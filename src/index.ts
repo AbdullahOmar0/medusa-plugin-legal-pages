@@ -1,15 +1,6 @@
-import LegalModuleService from "./service"
-import { Module } from "@medusajs/framework/utils"
-
-// Why: Exports the Legal Module definition so Medusa v2 can register and inject it into req.scope and workflows.
-// Tricky logic: LEGAL_MODULE constant must match the token used in req.scope.resolve(LEGAL_MODULE).
-// TODO: Export workflow steps for legal page versioning and notification triggers.
-export const LEGAL_MODULE = "legal"
-
-export default Module(LEGAL_MODULE, {
-  service: LegalModuleService,
-})
-
-export * from "./templates"
-export { default as LegalModuleService } from "./service"
-export { default as LegalPage } from "./models/legal-page"
+// Why: Root package entrypoint exporting the module service, models, and constants for external consumers.
+// Tricky logic: Medusa plugins can be consumed either as full plugins via plugins: [{ resolve: 'medusa-plugin-legal-pages' }]
+// or standalone modules. Exporting the module directly from root ensures backwards-compatibility.
+// TODO: Add exported TypeScript types for plugin options if configurable options are added.
+export * from "./modules/legal-pages"
+export { default } from "./modules/legal-pages"

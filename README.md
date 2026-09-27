@@ -39,7 +39,7 @@ pnpm add medusa-plugin-legal-pages
 
 ## ⚙️ Configuration
 
-Register the module in your `medusa-config.ts`:
+Simply register the plugin in your `medusa-config.ts`:
 
 ```typescript
 import { defineConfig } from "@medusajs/framework/utils"
@@ -48,13 +48,19 @@ module.exports = defineConfig({
   projectConfig: {
     // ... your project config
   },
-  modules: [
+  plugins: [
     {
       resolve: "medusa-plugin-legal-pages",
+      options: {},
     },
   ],
 })
 ```
+
+That's it! In Medusa v2, registering the plugin **automatically**:
+- 🧭 Injects the **Legal Pages** item into your Medusa Admin sidebar navigation.
+- 📡 Exposes all **Storefront & Admin REST API** routes (`/store/legal-pages`, `/admin/legal-pages`).
+- 🗄️ Registers the **Legal Module** and database schema.
 
 ---
 
@@ -64,26 +70,6 @@ Run the database migration to create the `legal_page` table and indexes:
 
 ```bash
 npx medusa db:migrate
-```
-
----
-
-## 🖥️ Medusa Admin Extension
-
-To display the management screen in your Medusa Admin, create a route at `src/admin/routes/legal/page.tsx` in your Medusa backend:
-
-```tsx
-import { defineRouteConfig } from "@medusajs/admin-sdk"
-import { DocumentText } from "@medusajs/icons"
-import LegalPagesAdmin from "medusa-plugin-legal-pages/admin" // or use the included component
-
-export const config = defineRouteConfig({
-  label: "Legal Pages",
-  icon: DocumentText,
-  rank: 25,
-})
-
-export default LegalPagesAdmin
 ```
 
 ---

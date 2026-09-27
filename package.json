@@ -1,12 +1,12 @@
 {
   "name": "medusa-plugin-legal-pages",
-  "version": "1.0.2",
-  "description": "Compliance and legal pages management (AGB, Terms & Conditions, Privacy Policy, Impressum) for Medusa v2 with an interactive Admin Dashboard UI and public Store APIs.",
+  "version": "2.0.0",
+  "description": "Compliance and legal pages management (AGB, Terms & Conditions, Privacy Policy, Impressum) for Medusa v2 with an interactive Admin Dashboard UI, public Store APIs, and multilingual support.",
   "author": "Abdullah Omar <proxdui@gmail.com>",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "keywords": [
+    "medusa",
+    "plugin",
     "medusa-v2",
     "medusa-plugin",
     "medusa-plugin-integration",
@@ -23,21 +23,27 @@
     "e-commerce",
     "markdown"
   ],
+  "files": [
+    ".medusa/server",
+    "README.md",
+    "LICENSE"
+  ],
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
+    "./package.json": "./package.json",
+    "./workflows": "./.medusa/server/src/workflows/index.js",
+    "./.medusa/server/src/modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./providers/*": "./.medusa/server/src/providers/*/index.js",
     "./admin": {
-      "import": "./dist/admin/routes/legal/page.js",
-      "require": "./dist/admin/routes/legal/page.js",
-      "default": "./dist/admin/routes/legal/page.js",
-      "types": "./dist/admin/routes/legal/page.d.ts"
+      "import": "./.medusa/server/src/admin/index.mjs",
+      "require": "./.medusa/server/src/admin/index.js",
+      "default": "./.medusa/server/src/admin/index.js"
     },
-    "./package.json": "./package.json"
+    "./*": "./.medusa/server/src/*.js",
+    ".": "./.medusa/server/src/index.js"
   },
+  "main": "./.medusa/server/src/index.js",
+  "types": "./.medusa/server/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AbdullahOmar0/medusa-plugin-legal-pages.git"
@@ -49,17 +55,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
   "scripts": {
-    "build": "tsc && (cp -r src/admin/routes/legal/*.png dist/admin/routes/legal/ 2>/dev/null || true)",
-    "watch": "tsc --watch",
+    "build": "medusa plugin:build",
+    "watch": "medusa plugin:develop",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "@medusajs/admin-sdk": "^2.20.1",
     "@medusajs/framework": "^2.20.1",
     "@medusajs/icons": "^2.20.1",
     "@medusajs/ui": "^4.2.3"
@@ -67,11 +69,19 @@
   "peerDependencies": {
     "@medusajs/admin-sdk": ">=2.0.0",
     "@medusajs/framework": ">=2.0.0",
+    "@medusajs/icons": ">=2.0.0",
     "@medusajs/medusa": ">=2.0.0",
-    "@medusajs/ui": ">=4.0.0"
+    "@medusajs/ui": ">=4.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
-    "@swc/core": "^1.7.28",
+    "@medusajs/cli": "^2.20.1",
+    "@medusajs/medusa": "^2.20.1",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.2.25",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "typescript": "^5.6.2"
   }
 }
