@@ -1,6 +1,6 @@
 {
   "name": "medusa-plugin-legal-pages",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Compliance and legal pages management (AGB, Terms & Conditions, Privacy Policy, Impressum) for Medusa v2 with an interactive Admin Dashboard UI and public Store APIs.",
   "author": "Abdullah Omar <proxdui@gmail.com>",
   "license": "MIT",
@@ -26,10 +26,14 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./admin": {
       "import": "./dist/admin/routes/legal/page.js",
+      "require": "./dist/admin/routes/legal/page.js",
+      "default": "./dist/admin/routes/legal/page.js",
       "types": "./dist/admin/routes/legal/page.d.ts"
     },
     "./package.json": "./package.json"
