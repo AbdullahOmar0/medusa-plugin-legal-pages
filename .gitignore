@@ -1,0 +1,8 @@
+# Why this file exists: Prevent compiled build artifacts, local turbo cache,
+# and system-specific files from being tracked in the public git repository.
+node_modules/
+dist/
+.turbo/
+*.tsbuildinfo
+*.log
+.DS_Store

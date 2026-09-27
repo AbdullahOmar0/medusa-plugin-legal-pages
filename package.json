@@ -1,0 +1,73 @@
+{
+  "name": "medusa-plugin-legal-pages",
+  "version": "1.0.1",
+  "description": "Compliance and legal pages management (AGB, Terms & Conditions, Privacy Policy, Impressum) for Medusa v2 with an interactive Admin Dashboard UI and public Store APIs.",
+  "author": "Abdullah Omar <proxdui@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "medusa-v2",
+    "medusa-plugin",
+    "medusa-plugin-integration",
+    "medusa-plugin-cms",
+    "medusa-plugin-other",
+    "legal",
+    "compliance",
+    "gdpr",
+    "dsgvo",
+    "terms-of-service",
+    "privacy-policy",
+    "impressum",
+    "agb",
+    "e-commerce",
+    "markdown"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./admin": {
+      "import": "./dist/admin/routes/legal/page.js",
+      "types": "./dist/admin/routes/legal/page.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdullahOmar0/medusa-plugin-legal-pages.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AbdullahOmar0/medusa-plugin-legal-pages/issues"
+  },
+  "homepage": "https://github.com/AbdullahOmar0/medusa-plugin-legal-pages#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && (cp -r src/admin/routes/legal/*.png dist/admin/routes/legal/ 2>/dev/null || true)",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@medusajs/framework": "^2.20.1",
+    "@medusajs/icons": "^2.20.1",
+    "@medusajs/ui": "^4.2.3"
+  },
+  "peerDependencies": {
+    "@medusajs/admin-sdk": ">=2.0.0",
+    "@medusajs/framework": ">=2.0.0",
+    "@medusajs/medusa": ">=2.0.0",
+    "@medusajs/ui": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.7.28",
+    "typescript": "^5.6.2"
+  }
+}
