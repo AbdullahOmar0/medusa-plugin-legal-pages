@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react"
+import { useState, useEffect, useCallback, useMemo, type ReactElement } from "react"
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import {
   Container,
@@ -112,7 +112,7 @@ const MarkdownPreview = ({ content }: { content: string }) => {
     }
 
     const lines = content.split("\n")
-    const elements: JSX.Element[] = []
+    const elements: ReactElement[] = []
     let inList = false
     let listItems: string[] = []
 
@@ -134,7 +134,7 @@ const MarkdownPreview = ({ content }: { content: string }) => {
       return text
         .replace(/\*\*(.*?)\*\*/g, "<strong class='text-ui-fg-base font-semibold'>$1</strong>")
         .replace(/\*(.*?)\*/g, "<em class='text-ui-fg-subtle'>$1</em>")
-        .replace(/`([^`]+)`/g, "<code class='bg-ui-bg-subtle px-1 py-0.5 rounded text-xs'>$1</code>")
+        .replace(/`([^`]+)`/g, "<code class='bg-ui-bg-subtle px-1 py-0.5 rounded-sm text-xs'>$1</code>")
     }
 
     lines.forEach((rawLine, index) => {
@@ -869,7 +869,7 @@ const LegalPagesAdmin = () => {
                     </Table.Cell>
                     <Table.Cell>
                       <div className="flex flex-col gap-0.5">
-                        <code className="text-xs bg-ui-bg-subtle text-ui-fg-subtle px-1.5 py-0.5 rounded font-mono w-fit">
+                        <code className="text-xs bg-ui-bg-subtle text-ui-fg-subtle px-1.5 py-0.5 rounded-sm font-mono w-fit">
                           /{group.canonicalSlug}
                         </code>
                         {Object.keys(group.translations).length > 1 && (
@@ -934,7 +934,7 @@ const LegalPagesAdmin = () => {
             <div>
               <div className="flex items-center gap-2">
                 <Heading level="h2">{activeGroup.title}</Heading>
-                <code className="text-xs bg-ui-bg-subtle text-ui-fg-muted px-1.5 py-0.5 rounded font-mono">
+                <code className="text-xs bg-ui-bg-subtle text-ui-fg-muted px-1.5 py-0.5 rounded-sm font-mono">
                   /{formSlug || activeGroup.canonicalSlug}
                 </code>
               </div>
